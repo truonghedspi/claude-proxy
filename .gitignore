@@ -1,0 +1,9 @@
+/target/
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.*
+!.env.sso.example
+.DS_Store
+__pycache__/

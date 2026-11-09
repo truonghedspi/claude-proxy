@@ -1,0 +1,22 @@
+[Unit]
+Description=Managed authenticated HTTP/HTTPS proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=managed-proxy
+Group=managed-proxy
+ExecStart=/opt/managed-proxy/managed-proxy --db /var/lib/managed-proxy/proxy.db serve --listen 127.0.0.1:8080
+Restart=on-failure
+RestartSec=3s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/managed-proxy
+LimitNOFILE=65536
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
